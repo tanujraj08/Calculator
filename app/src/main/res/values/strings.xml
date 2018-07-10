@@ -16,4 +16,5 @@
     <string name="plus">+</string>
     <string name="dot">.</string>
     <string name="equalsto">=</string>
+    <string name="negative">NEG</string>
 </resources>

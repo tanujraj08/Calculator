@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         result= findViewById(R.id.result);
         newNumber= findViewById(R.id.newNumber);
         displayOperation= findViewById(R.id.operation);
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         Button buttonPlus= findViewById(R.id.buttonPlus);
         Button buttonMinus= findViewById(R.id.buttonMinus);
         Button buttonEquals= findViewById(R.id.buttonEquals);
+
+
 
         View.OnClickListener listener= new View.OnClickListener() {
             @Override
@@ -86,6 +89,45 @@ public class MainActivity extends AppCompatActivity {
         buttonMinus.setOnClickListener(opListener);
         buttonMultiply.setOnClickListener(opListener);
 
+
+
+        Button buttonNeg=findViewById(R.id.buttonNeg);
+        buttonNeg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String value=newNumber.getText().toString();
+                if(value.length()==0){
+                    newNumber.setText("-");
+
+                }else{
+                    try{
+                        Double doubleValue=Double.valueOf(value);
+                        doubleValue *= -1;
+                        newNumber.setText(doubleValue.toString());
+                    }catch(NumberFormatException e){
+                        newNumber.setText("");
+                    }
+                }
+            }
+        });
+        Button buttonAc=findViewById(R.id.buttonAc);
+        buttonAc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                result.setText("");
+                newNumber.setText("");
+                displayOperation.setText("");
+                operand1=null;
+                pendingOperation="=";
+
+
+
+            }
+
+
+        });
+
+
     }
 
     @Override
@@ -111,8 +153,10 @@ public class MainActivity extends AppCompatActivity {
         }else{
 
             if(pendingOperation.equals("=")){
-                pendingOperation=operation;
+                    pendingOperation=operation;
+
             }
+
             switch (pendingOperation){
                 case "=":
                     operand1= value;
@@ -133,6 +177,11 @@ public class MainActivity extends AppCompatActivity {
                 case"-":
                     operand1 -= value;
                     break;
+
+
+
+
+
 
 
             }
